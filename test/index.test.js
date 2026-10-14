@@ -1,7 +1,10 @@
 /**
  * @jest-environment jsdom
  */
+const fs=require("fs")
+const path=require("path")
 
+const html=fs.readFileSync(path.resolve(__dirname,"../index.html"),"utf-8");
 const {
   addElementToDOM,
   removeElementFromDOM,
@@ -11,7 +14,8 @@ const {
 
 describe('DOM Testing and User Behavior Simulation', () => {
   beforeEach(() => {
-    document.body.innerHTML = `
+    document.documentElement.innerHTML = html;
+     document.body.innerHTML =`
       <div id="dynamic-content"></div>
       <div id="error-message" class="hidden"></div>
       <form id="user-form">
